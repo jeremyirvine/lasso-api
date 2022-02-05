@@ -1,0 +1,1 @@
+{"version":3,"file":"mitm.js","sourceRoot":"","sources":["../src/mitm.ts"],"names":[],"mappings":";;AAAA,iCAA4C;AAE5C,MAAM,SAAS,GAAkB,eAAK,CAAC,MAAM,CAAC;IAC7C,KAAK,EAAE;QACN,IAAI,EAAE,WAAW;QACjB,IAAI,EAAE,IAAI;KACV;IACD,YAAY,EAAE,CAAC;CACf,CAAC,CAAA;AAEF,kBAAe,SAAS,CAAA"}
