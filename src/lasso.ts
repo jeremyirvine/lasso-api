@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 import axiosMitm from './mitm'
-import type { Event, EventsRequest, EventsResponse, TransportError } from './types'
+import type { Event, Client, EventsRequest, EventsResponse, ClientsRequest, ClientsResponse, TransportError } from './types'
 import { URLSerializeObject } from './util'
 
 class Lasso {
@@ -131,6 +131,95 @@ class Lasso {
 
     return req.data
   }
+
+	/**
+	 * Gets the clients for the current url and API Key 
+	 * @returns {Promise<ClientsResponse | TransportError>} Array of Clients, or an error if one occurred 
+	 */
+	async getClients(params?: ClientsRequest): Promise<ClientsResponse | TransportError> {
+		let urlData = URLSerializeObject(params || {})
+
+    let req: AxiosResponse<any, any>
+    try {
+      req = await this.getAxios().get(`${this.urlBase}/clients${urlData}`, {
+        headers: this.getHeaders()
+      })
+    } catch(e) {
+      return {
+        code: e.response.status,
+        data: e.response.data,
+        _istransporterror: true
+      }
+    }
+
+		return req.data
+	}
+
+  /**
+   * Gets a client from the client's id 
+   * @returns {Promise<Client | TransportError>} The client with the supplied id, or an error if one occurred 
+   */
+  async getClient(id: String): Promise<Client | TransportError> {
+    let req: AxiosResponse<any, any>
+    try {
+      req = await this.getAxios().get(`${this.urlBase}/clients/${id}`, {
+        headers: this.getHeaders()
+      })
+    } catch(e) {
+      return {
+        code: e.response.status,
+        data: e.response.data,
+        _istransporterror: true
+      }
+    }
+
+    return req.data
+  }
+
+  /**
+   * Updates an client's data based on the client's id, without suppplying the complete event dataset
+   * @param {number} id - The id of the client you want to modify
+   * @param {Client} cl - The data you want to update
+   * @returns {Promise<Client | TransportError>} The full event with the modifications, or an error if one occurred 
+   */
+  async updateClient(id: number, cl: Client): Promise<Client | TransportError> {
+    let req: AxiosResponse<any, any>
+
+    try {
+      req = await this.getAxios().patch(`${this.urlBase}/clients/${id}`, cl, {
+        headers: this.getHeaders()
+      })
+    } catch(e) {
+      return {
+        code: e.response.status,
+        data: e.response.data,
+        _istransporterror: true
+      }
+    }
+
+    return req.data
+  }
+
+  /**
+   * Create a client with the supplied data
+   * @param {Client} cl - The client data used to create a new client
+   * @returns {Promise<Client | TransportError>} The client that was just created, or an error if one occurred    
+   */
+  async createClient(cl: Client): Promise<Client | TransportError> {
+    let req: AxiosResponse<any, any>
+    try {
+      req = await this.getAxios().post(`${this.urlBase}/events`, cl, { headers: this.getHeaders() })
+    } catch(e) {
+      return {
+        code: e.response.status,
+        data: e.response.data,
+        _istransporterror: true
+      }
+    }
+
+    return req.data
+  }
+
 }
 
 export default Lasso
