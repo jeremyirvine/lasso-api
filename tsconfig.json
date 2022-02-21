@@ -5,7 +5,8 @@
 		"target": "ES2021",
 		"sourceMap": true,
 		"moduleResolution": "node",
-		"module": "CommonJS"
+		"module": "CommonJS",
+    "declaration": true
 	},
 	"include": [
 		"./src/**/*"

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 import axiosMitm from './mitm'
-import type { Event, Client, EventsRequest, EventsResponse, ClientsRequest, ClientsResponse, TransportError } from './types'
+import type { Event, Client, EventsRequest, ClientsRequest, TransportError, Response } from './types'
 import { URLSerializeObject } from './util'
 
 class Lasso {
@@ -45,7 +45,7 @@ class Lasso {
 	 * Gets the events for the current url and API Key 
 	 * @returns {Promise<EventsResponse | TransportError>} Array of Events, or an error if one occurred 
 	 */
-	async getEvents(params?: EventsRequest): Promise<EventsResponse | TransportError> {
+	async getEvents(params?: EventsRequest): Promise<Response<Event> | TransportError> {
 		let urlData = URLSerializeObject(params || {})
 
     let req: AxiosResponse<any, any>
@@ -136,7 +136,7 @@ class Lasso {
 	 * Gets the clients for the current url and API Key 
 	 * @returns {Promise<ClientsResponse | TransportError>} Array of Clients, or an error if one occurred 
 	 */
-	async getClients(params?: ClientsRequest): Promise<ClientsResponse | TransportError> {
+	async getClients(params?: ClientsRequest): Promise<Response<Client> | TransportError> {
 		let urlData = URLSerializeObject(params || {})
 
     let req: AxiosResponse<any, any>
@@ -208,7 +208,7 @@ class Lasso {
   async createClient(cl: Client): Promise<Client | TransportError> {
     let req: AxiosResponse<any, any>
     try {
-      req = await this.getAxios().post(`${this.urlBase}/events`, cl, { headers: this.getHeaders() })
+      req = await this.getAxios().post(`${this.urlBase}/clients`, cl, { headers: this.getHeaders() })
     } catch(e) {
       return {
         code: e.response.status,

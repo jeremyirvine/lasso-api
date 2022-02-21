@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.URLSerializeObject = void 0;
+exports.IsError = exports.URLSerializeObject = void 0;
 function URLSerializeObject(obj) {
     let queryString = "";
     for (let i = 0; i < Object.keys(obj).length; i++) {
@@ -12,4 +12,8 @@ function URLSerializeObject(obj) {
     return queryString;
 }
 exports.URLSerializeObject = URLSerializeObject;
+function IsError(obj) {
+    return obj._istransporterror;
+}
+exports.IsError = IsError;
 //# sourceMappingURL=util.js.map

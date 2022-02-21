@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ScheduleEntry = exports.EventRosterPositionSerializerNoAnalytics = exports.EventNote = exports.EventRole = exports.EventPosition = exports.Event = void 0;
+exports.Client = exports.ScheduleEntry = exports.EventRosterPositionSerializerNoAnalytics = exports.EventNote = exports.EventRole = exports.EventPosition = exports.Event = exports.Market = void 0;
+class Market {
+}
+exports.Market = Market;
 var Event;
 (function (Event) {
     let StatusEnum;
@@ -94,4 +97,13 @@ var ScheduleEntry;
         TypeEnum[TypeEnum["Travel"] = 'travel'] = "Travel";
     })(TypeEnum = ScheduleEntry.TypeEnum || (ScheduleEntry.TypeEnum = {}));
 })(ScheduleEntry = exports.ScheduleEntry || (exports.ScheduleEntry = {}));
+var Client;
+(function (Client) {
+    let StatusEnum;
+    (function (StatusEnum) {
+        StatusEnum[StatusEnum["Active"] = 'active'] = "Active";
+        StatusEnum[StatusEnum["Inactive"] = 'inactive'] = "Inactive";
+        StatusEnum[StatusEnum["Deleted"] = 'deleted'] = "Deleted";
+    })(StatusEnum = Client.StatusEnum || (Client.StatusEnum = {}));
+})(Client = exports.Client || (exports.Client = {}));
 //# sourceMappingURL=types.js.map

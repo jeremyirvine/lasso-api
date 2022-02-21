@@ -1,57 +1,47 @@
-export type TransportError = {
-  code?: number,
-  data: any,
-  _istransporterror: true
-}
-
-export type Response<T> = {
-  count: number,
-  next: String,
-  previous: String,
-  results: Array<T>
-}
-
-export type ClientsRequest = {
-  external_code?: String,
-  code?: String,
-  name?: String,
-  db_date_updated__gt?: String,
-  db_date_updated__lt?: String,
-  limit?: Number,
-  offset?: Number,
-}
-
-export type EventsRequest = {
-  code?: String,
-  external_code?: String,
-  status?: String,
-
-  db_date_updated__gt?: String,
-  db_date_updated__lt?: String,
-  
-  date_begin__gt?: String,
-  date_begin__lt?: String,
-
-  date_end__gt?: String,
-  date_end__lt?: String,
-
-  date_changed__gt?: String,
-  date_changed__lt?: String,
-
-  limit?: Number,
-  offset?: Number,
-}
-
-export type AirportsRequest = {
-  zip?: String,
-  limit?: number,
-  offset?: number
-}
-
-export type EventPosition = {
-   /**
-    * The LASSO unique identifier for this resource.
-    */
+export declare type TransportError = {
+    code?: number;
+    data: any;
+    _istransporterror: true;
+};
+export declare type Response<T> = {
+    count: number;
+    next: String;
+    previous: String;
+    results: Array<T>;
+};
+export declare type ClientsRequest = {
+    external_code?: String;
+    code?: String;
+    name?: String;
+    db_date_updated__gt?: String;
+    db_date_updated__lt?: String;
+    limit?: Number;
+    offset?: Number;
+};
+export declare type EventsRequest = {
+    code?: String;
+    external_code?: String;
+    status?: String;
+    db_date_updated__gt?: String;
+    db_date_updated__lt?: String;
+    date_begin__gt?: String;
+    date_begin__lt?: String;
+    date_end__gt?: String;
+    date_end__lt?: String;
+    date_changed__gt?: String;
+    date_changed__lt?: String;
+    limit?: Number;
+    offset?: Number;
+};
+export declare type AirportsRequest = {
+    zip?: String;
+    limit?: number;
+    offset?: number;
+};
+export declare type EventPosition = {
+    /**
+     * The LASSO unique identifier for this resource.
+     */
     id?: number;
     uuid?: string;
     db_date_created?: Date;
@@ -73,7 +63,7 @@ export type EventPosition = {
     */
     sequence?: number;
     /**
-    * How pay rate is determined when `crew` apply to work this `event_position` and when they are added to the `event` roster for this `event_position` (via related `event_roster_position`. Default may be overridden in company settings. Choices are:  \"crew_default\" (Default): Use the `crew`s rate from their `crew_position` whose `position` matches this `event_position`s \"position\". Do not ask `crew` to submit a rate. (Note that `crew_position` rates may not be visible to crew, per company settings.) \"crew_bid\": Ask `crew` to submit a rate. If crew does not submit a rate, use the rate from their `crew_position` like \"crew_default\". \"position_defined\": Set a custom rate as the default for all `event_roster_positions` added for this position, and display it to applying `crew`. Do not ask `crew` to submit a rate. 
+    * How pay rate is determined when `crew` apply to work this `event_position` and when they are added to the `event` roster for this `event_position` (via related `event_roster_position`. Default may be overridden in company settings. Choices are:  \"crew_default\" (Default): Use the `crew`s rate from their `crew_position` whose `position` matches this `event_position`s \"position\". Do not ask `crew` to submit a rate. (Note that `crew_position` rates may not be visible to crew, per company settings.) \"crew_bid\": Ask `crew` to submit a rate. If crew does not submit a rate, use the rate from their `crew_position` like \"crew_default\". \"position_defined\": Set a custom rate as the default for all `event_roster_positions` added for this position, and display it to applying `crew`. Do not ask `crew` to submit a rate.
     */
     rate_setting: EventPosition.RateSettingEnum;
     /**
@@ -94,11 +84,11 @@ export type EventPosition = {
     */
     billed_rate_type?: EventPosition.BilledRateTypeEnum;
     /**
-    * The earliest date on which this `event_position` requires work. If blank on initial save, set to `event` \"date_begin\". As related `schedule_entry`s are created/updated, calculated to match the earliest of these, of any shift type. 
+    * The earliest date on which this `event_position` requires work. If blank on initial save, set to `event` \"date_begin\". As related `schedule_entry`s are created/updated, calculated to match the earliest of these, of any shift type.
     */
     schedule_begin?: string;
     /**
-    * The latest date on which this `event_position` requires work. If blank on initial save, set to `event` \"date_end\". As related `schedule_entry`s are created/updated, calculated to match the latest of these, of any shift type. 
+    * The latest date on which this `event_position` requires work. If blank on initial save, set to `event` \"date_end\". As related `schedule_entry`s are created/updated, calculated to match the latest of these, of any shift type.
     */
     schedule_end?: string;
     /**
@@ -123,9 +113,8 @@ export type EventPosition = {
     * A date the `event_position` has been marked for removal by a third party via the LASSO API.
     */
     external_remove_date?: Date;
-}
-
-export type Event = {
+};
+export declare type Event = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -182,9 +171,8 @@ export type Event = {
     program?: number;
     hide_client?: boolean;
     hide_name?: boolean;
-}
-
-export type EventRole = {
+};
+export declare type EventRole = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -198,9 +186,8 @@ export type EventRole = {
     is_primary?: boolean;
     date_added?: Date;
     date_removed?: Date;
-}
-
-export type EventAccountUserRoleRelationship = {
+};
+export declare type EventAccountUserRoleRelationship = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -210,9 +197,8 @@ export type EventAccountUserRoleRelationship = {
     date_removed?: Date;
     event: number;
     account_user_role: number;
-}
-
-export type EventNote = {
+};
+export declare type EventNote = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -224,9 +210,8 @@ export type EventNote = {
     subject?: string;
     body?: string;
     status?: EventNote.StatusEnum;
-}
-
-export type EventRosterPositionSerializerNoAnalytics = {
+};
+export declare type EventRosterPositionSerializerNoAnalytics = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -269,9 +254,8 @@ export type EventRosterPositionSerializerNoAnalytics = {
     * The reason `crew` was removed from the roster after being approved. Choices include:  1: Didn’t show up   2: Called out - excused   3: Called out - unexcused   4: No longer needed  5: Found a crew member that was a better fit   The default is 0.
     */
     removal_reason?: number;
-}
-
-export type User = {
+};
+export declare type User = {
     /**
     * `user`'s first name.
     */
@@ -284,9 +268,8 @@ export type User = {
     * `user`'s email address. Must be unique.
     */
     email?: string;
-}
-
-export type CrewActuals = {
+};
+export declare type CrewActuals = {
     crew: string;
     /**
     * The sum of all payments from all shifts for the `crew`.
@@ -296,9 +279,8 @@ export type CrewActuals = {
     * The currency type of the total cost given.
     */
     cost_currency: string;
-}
-
-export type ScheduleEntry = {
+};
+export declare type ScheduleEntry = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -334,9 +316,8 @@ export type ScheduleEntry = {
     * A date the `event_position` has been marked for removal by a third party via the LASSO API.
     */
     external_remove_date?: Date;
-}
-
-export type Client = {
+};
+export declare type Client = {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -371,10 +352,9 @@ export type Client = {
     /**
     * A list of the clients address information
     */
-    addresses?: Array<number>;	
-}
-
-export type Airport = {
+    addresses?: Array<number>;
+};
+export declare type Airport = {
     /**
     * The LASSO unique identifier for the `airport` resource.
     */
@@ -424,9 +404,8 @@ export type Airport = {
     * Used to help prioritize search results. Higher numbers will show higher in the list.
     */
     sequence?: number;
-}
-
-export class Market {
+};
+export declare class Market {
     /**
     * The LASSO unique identifier for this resource.
     */
@@ -442,93 +421,86 @@ export class Market {
     */
     primary_city: string;
 }
-
-export namespace Event {
-   export enum StatusEnum {
-      Unpublished = <any> 'unpublished',
-      Published = <any> 'published',
-      Completed = <any> 'completed',
-      Canceled = <any> 'canceled',
-      TestEvent = <any> 'test_event'
-  }
-  export enum TravelBookingStatusEnum {
-      Draft = <any> 'draft',
-      Ready = <any> 'ready',
-      InProgress = <any> 'in_progress',
-      Completed = <any> 'completed'
-  }
-}
-
-export namespace EventPosition {
-    export enum StatusEnum {
-        Pending = <any> 'pending',
-        Open = <any> 'open',
-        Closed = <any> 'closed'
+export declare namespace Event {
+    enum StatusEnum {
+        Unpublished,
+        Published,
+        Completed,
+        Canceled,
+        TestEvent
     }
-    export enum RateSettingEnum {
-        CrewDefault = <any> 'crew_default',
-        CrewBid = <any> 'crew_bid',
-        PositionDefined = <any> 'position_defined'
-    }
-    export enum RateTypeEnum {
-        Hourly = <any> 'hourly',
-        Daily = <any> 'daily',
-        Weekly = <any> 'weekly',
-        Event = <any> 'event'
-    }
-    export enum BilledRateTypeEnum {
-        Hourly = <any> 'hourly',
-        Daily = <any> 'daily',
-        Weekly = <any> 'weekly',
-        Event = <any> 'event'
+    enum TravelBookingStatusEnum {
+        Draft,
+        Ready,
+        InProgress,
+        Completed
     }
 }
-
-export namespace EventRole {
-    export enum RoleEnum {
-        ProjectManager = <any> 'project-manager',
-        Supervisor = <any> 'supervisor',
-        AccountManager = <any> 'account-manager',
-        Timekeeper = <any> 'timekeeper'
+export declare namespace EventPosition {
+    enum StatusEnum {
+        Pending,
+        Open,
+        Closed
+    }
+    enum RateSettingEnum {
+        CrewDefault,
+        CrewBid,
+        PositionDefined
+    }
+    enum RateTypeEnum {
+        Hourly,
+        Daily,
+        Weekly,
+        Event
+    }
+    enum BilledRateTypeEnum {
+        Hourly,
+        Daily,
+        Weekly,
+        Event
     }
 }
-
-export namespace EventNote {
-    export enum StatusEnum {
-        Active = <any> 'active',
-        Hidden = <any> 'hidden',
-        Deleted = <any> 'deleted'
+export declare namespace EventRole {
+    enum RoleEnum {
+        ProjectManager,
+        Supervisor,
+        AccountManager,
+        Timekeeper
     }
 }
-
-export namespace EventRosterPositionSerializerNoAnalytics {
-    export enum StatusEnum {
-        Tentative = <any> 'tentative',
-        Approved = <any> 'approved',
-        Removed = <any> 'removed',
-        Canceled = <any> 'canceled',
-        Declined = <any> 'declined'
-    }
-    export enum RateTypeEnum {
-        Hourly = <any> 'hourly',
-        Daily = <any> 'daily',
-        Weekly = <any> 'weekly',
-        Event = <any> 'event'
+export declare namespace EventNote {
+    enum StatusEnum {
+        Active,
+        Hidden,
+        Deleted
     }
 }
-
-export namespace ScheduleEntry {
-    export enum TypeEnum {
-        Shift = <any> 'shift',
-        DarkDay = <any> 'dark_day',
-        Travel = <any> 'travel'
+export declare namespace EventRosterPositionSerializerNoAnalytics {
+    enum StatusEnum {
+        Tentative,
+        Approved,
+        Removed,
+        Canceled,
+        Declined
+    }
+    enum RateTypeEnum {
+        Hourly,
+        Daily,
+        Weekly,
+        Event
     }
 }
-
-export namespace Client {
-    export enum StatusEnum {
-        Active = <any> 'active',
-        Inactive = <any> 'inactive',
-        Deleted = <any> 'deleted'
+export declare namespace ScheduleEntry {
+    enum TypeEnum {
+        Shift,
+        DarkDay,
+        Travel
+    }
+}
+export declare namespace Client {
+    enum StatusEnum {
+        Active,
+        Inactive,
+        Deleted
     }
 }
