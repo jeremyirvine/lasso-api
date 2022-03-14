@@ -1,4 +1,4 @@
-import type { Event, Client, EventsRequest, ClientsRequest, TransportError, Response } from './types';
+import type { Event, Client, EventsRequest, ClientsRequest, TransportError, Response, Venue, VenuesRequest } from './types';
 declare class Lasso {
     urlBase: string;
     token: string;
@@ -69,5 +69,23 @@ declare class Lasso {
      * @returns {Promise<Client | TransportError>} The client that was just created, or an error if one occurred
      */
     createClient(cl: Client): Promise<Client | TransportError>;
+    /**
+     * Gets the venues for the current url and API Key
+     * @returns {Promise<Response<Venue> | TransportError>} Array of Clients, or an error if one occurred
+     */
+    getVenues(params?: VenuesRequest): Promise<Response<Venue> | TransportError>;
+    /**
+     * Updates an venue's data based on the venue's id, without suppplying the complete venue dataset
+     * @param {number} id - The id of the venue you want to modify
+     * @param {Venue} ve - The data you want to update
+     * @returns {Promise<Client | TransportError>} The full venue with the modifications, or an error if one occurred
+     */
+    updateVenue(id: number, ve: Venue): Promise<Venue | TransportError>;
+    /**
+     * Create a venue with the supplied data
+     * @param {Venue} ve - The venue data used to create a new venue
+     * @returns {Promise<Venue | TransportError>} The venue that was just created, or an error if one occurred
+     */
+    createVenue(ve: Venue): Promise<Venue | TransportError>;
 }
 export default Lasso;

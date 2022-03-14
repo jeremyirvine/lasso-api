@@ -199,6 +199,68 @@ class Lasso {
         }
         return req.data;
     }
+    /**
+     * Gets the venues for the current url and API Key
+     * @returns {Promise<Response<Venue> | TransportError>} Array of Clients, or an error if one occurred
+     */
+    async getVenues(params) {
+        let urlData = (0, util_1.URLSerializeObject)(params || {});
+        let req;
+        try {
+            req = await this.getAxios().get(`${this.urlBase}/venues${urlData}`, {
+                headers: this.getHeaders()
+            });
+        }
+        catch (e) {
+            return {
+                code: e.response.status,
+                data: e.response.data,
+                _istransporterror: true
+            };
+        }
+        return req.data;
+    }
+    /**
+     * Updates an venue's data based on the venue's id, without suppplying the complete venue dataset
+     * @param {number} id - The id of the venue you want to modify
+     * @param {Venue} ve - The data you want to update
+     * @returns {Promise<Client | TransportError>} The full venue with the modifications, or an error if one occurred
+     */
+    async updateVenue(id, ve) {
+        let req;
+        try {
+            req = await this.getAxios().patch(`${this.urlBase}/venues/${id}`, ve, {
+                headers: this.getHeaders()
+            });
+        }
+        catch (e) {
+            return {
+                code: e.response.status,
+                data: e.response.data,
+                _istransporterror: true
+            };
+        }
+        return req.data;
+    }
+    /**
+     * Create a venue with the supplied data
+     * @param {Venue} ve - The venue data used to create a new venue
+     * @returns {Promise<Venue | TransportError>} The venue that was just created, or an error if one occurred
+     */
+    async createVenue(ve) {
+        let req;
+        try {
+            req = await this.getAxios().post(`${this.urlBase}/venues`, ve, { headers: this.getHeaders() });
+        }
+        catch (e) {
+            return {
+                code: e.response.status,
+                data: e.response.data,
+                _istransporterror: true
+            };
+        }
+        return req.data;
+    }
 }
 exports.default = Lasso;
 //# sourceMappingURL=lasso.js.map

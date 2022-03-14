@@ -18,6 +18,7 @@ export declare type ClientsRequest = {
     limit?: Number;
     offset?: Number;
 };
+export declare type VenuesRequest = ClientsRequest;
 export declare type EventsRequest = {
     code?: String;
     external_code?: String;
@@ -255,6 +256,88 @@ export declare type EventRosterPositionSerializerNoAnalytics = {
     */
     removal_reason?: number;
 };
+export interface Venue {
+    /**
+     * Id
+     * The LASSO unique identifier for this resource.
+     */
+    id?: number;
+    /**
+     * Db date created
+     * @format date-time
+     */
+    db_date_created?: string;
+    /**
+     * Db date updated
+     * @format date-time
+     */
+    db_date_updated?: string;
+    /**
+     * Code
+     * The system generated unique identifier for the `venue` resource.                   Used as a human-readable-friendly code in the URL for the resource.
+     */
+    code?: string;
+    /**
+     * External code
+     * A `venue` resource identifier created by a user.                   Also referred to as the "Vendor ID".
+     */
+    external_code?: string | null;
+    /**
+     * Name
+     * The name of the `venue` and the attribute used for resource look-ups in searches.
+     */
+    name: string;
+    /**
+     * Status
+     * The status of the `venue` resource.
+     */
+    status?: "active" | "inactive";
+    rooms?: number[];
+    notes?: number[];
+    /** `venue_contact`s associated with this `venue`. */
+    contacts?: number[];
+    /**
+     * Street1
+     * The first line of the street address associated with the resource.
+     */
+    street1?: string | null;
+    /**
+     * Street2
+     * The second line of the street address associated with the resource.
+     */
+    street2?: string | null;
+    /**
+     * Street3
+     * The third line of the street address associated with the resource.
+     */
+    street3?: string | null;
+    /** Locality */
+    locality: string;
+    /** Region */
+    region: string;
+    /**
+     * Postal code
+     * The resource’s mail sorting code.
+     */
+    postal_code?: string | null;
+    /**
+     * Country
+     * The `country` in which the resource resides.
+     */
+    country?: string;
+    /**
+     * Phone
+     * The resource’s phone number.
+     */
+    phone?: string | null;
+    /** Airport */
+    airport: string;
+    /**
+     * Market
+     * The unique identifier of the `market` which represents the resource location.
+     */
+    market?: number | null;
+}
 export declare type User = {
     /**
     * `user`'s first name.
